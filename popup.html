@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FakeSiteDetector (FSD)</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div class="logo-row">
+          <span class="shield-icon">🛡️</span>
+          <h1>FakeSiteDetector</h1>
+          <span class="version-tag">FSD v2.0</span>
+        </div>
+        <p class="subtitle">Real-time scam, homograph & phishing detection</p>
+      </header>
+
+      <!-- Active Tab Bar (Zero-Click Auto Scan) -->
+      <section id="currentSiteBox" class="current-site-box">
+        <div class="current-site-info">
+          <span class="site-status-dot pulse" id="siteStatusDot"></span>
+          <div class="site-text-col">
+            <span class="site-label">ACTIVE TAB</span>
+            <span class="site-domain" id="currentDomain">Detecting site...</span>
+          </div>
+        </div>
+        <button id="rescanBtn" class="btn-rescan" title="Force re-scan active site">
+          <span class="rescan-icon">🔄</span> Re-scan
+        </button>
+      </section>
+
+      <!-- System / Internal Page Banner -->
+      <div id="internalNotice" class="internal-notice hidden">
+        <span class="notice-icon">⚙️</span>
+        <div class="notice-text">
+          <strong>Internal Browser Page</strong>
+          <p>Browser settings and internal tabs are safe and don't need scanning.</p>
+        </div>
+      </div>
+
+      <!-- Quick Manual Check Row -->
+      <div class="manual-check-row">
+        <input id="urlInput" type="url" placeholder="Inspect custom URL or link..." autocomplete="off" />
+        <button id="analyzeBtn" class="btn-check">Check</button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loader" class="loader-wrap hidden">
+        <div class="spinner"></div>
+        <p id="loaderText">Running threat intel & heuristics...</p>
+      </div>
+
+      <!-- Result Card -->
+      <section id="resultCard" class="result-card hidden">
+        <div class="result-header">
+          <div class="score-display">
+            <span class="score-label">Safety Score</span>
+            <span id="scoreValue" class="score-num">0</span>
+            <span class="score-max">/ 100</span>
+          </div>
+          <span id="tierBadge" class="tier-badge safe">SAFE</span>
+        </div>
+
+        <div class="bar-track">
+          <div id="scoreBar" class="bar-fill"></div>
+        </div>
+
+        <p id="summaryText" class="summary-text">-</p>
+
+        <div class="meta-row">
+          <span id="domainMeta" class="meta-item">🌐 -</span>
+          <span id="timeMeta" class="meta-item">⏱️ -</span>
+        </div>
+
+        <details id="signalsDetails" open>
+          <summary>Risk Signal Breakdown</summary>
+          <ul id="signalsList" class="signals-list"></ul>
+        </details>
+      </section>
+
+      <!-- History -->
+      <section class="history-section">
+        <div class="history-header">
+          <h2>Recent Scans</h2>
+          <button id="clearHistoryBtn" class="btn-link">Clear</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

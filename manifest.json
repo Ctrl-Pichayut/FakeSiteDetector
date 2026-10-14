@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "FakeSiteDetector (FSD)",
+  "description": "Fast, 100% free & keyless website safety extension. Detects phishing, IDN homographs, brand typosquatting, and credential harvesting in real-time.",
+  "version": "2.0.0",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Website Safety Scanner",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}
