@@ -180,7 +180,7 @@ function analyzeBrandSpoofing(domain) {
     if (isOfficial) continue;
 
     // Check 1: Brand name embedded in non-official domain (e.g. paypal-security.com or apple.com.fake.xyz)
-    if (cleanDomain.includes(brand.name)) {
+    if (cleanDomain.split(/\.|-/).includes(brand.name)) {
       return {
         spoofedBrand: brand.name,
         type: "embedded_brand",
